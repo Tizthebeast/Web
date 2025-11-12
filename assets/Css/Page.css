@@ -1,0 +1,34 @@
+body{
+	background-color:#c0c0c0
+}
+
+div.topbar{
+	background-color:#e8e8e8;
+	width:98dvw;
+	height:6dvh;
+	border-radius:4dvh;
+}
+
+div.mainbar{
+	background-color:#e8e8e8;
+	width:73dvw;
+	height:120dvh;
+	border-radius:4dvh;
+	border-radius:4dvh;
+	float:right;
+	margin-top:1dvh;
+	margin-right:3dvw;
+}
+
+div.used{
+	margin:2dvh 2dvw;
+}
+
+p.jumper{
+	font-size:1.25rem;
+}
+
+a.sideHyperText{
+	text-decoration:none;
+	padding:1dvh 2dvw;
+}

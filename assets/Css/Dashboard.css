@@ -1,3 +1,7 @@
+body{
+	background-color:#c0c0c0
+}
+
 div.topbar{
 	background-color:#e8e8e8;
 	width:98dvw;
@@ -16,13 +20,13 @@ div.sidebar{
 
 div.mainbar{
 	background-color:#e8e8e8;
-	width:71dvw;
+	width:73dvw;
 	height:120dvh;
 	border-radius:4dvh;
 	border-radius:4dvh;
 	float:right;
 	margin-top:1dvh;
-	margin-right:5dvw;
+	margin-right:3dvw;
 }
 
 div.used{
