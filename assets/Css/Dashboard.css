@@ -1,11 +1,25 @@
 div.topbar{
-	background-color:e8e8e8;
+	background-color:#e8e8e8;
+	width:98dvw;
+	height:6dvh;
+	border-radius:4dvh;
+	display:flex;
 }
 
 div.sidebar{
-	background-color:e8e8e8;
+	background-color:#e8e8e8;
+	width:20dvw;
+	height:120dvh;
+	border-radius:4dvh;
+	float:left;
+	margin-top:2dvh;
 }
 
 div.mainbar{
-	background-color:e8e8e8;
+	background-color:#e8e8e8;
+	width:70dvw;
+	height:120dvh;
+	border-radius:4dvh;
+	flex:auto;
+	margin-top:2dvh;
 }
