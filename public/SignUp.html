@@ -16,21 +16,7 @@
         </div>
     </div>
 
-    <script>
-    function SignUP() {
-    fetch("http://localhost:3000/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            Username: document.getElementById("Username").value,
-            Password: document.getElementById("Password").value
-        })
-    })
-    .then(res => res.text())
-    .then(data => alert(data))
-    .catch(err => console.error(err));
-
-    }
     </script>
+    
 </body>
 </html>

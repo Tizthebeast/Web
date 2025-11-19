@@ -1,27 +1,33 @@
+require('dotenv').config()
 const express = require('express');
-const mysql = require('mysql2');
 const app = express();
+const mysql2 = require("mysql2");
+const port = 3000;
 
-app.use(express.static('public'));        // your HTML/CSS/JS folder
-app.use(express.urlencoded({extended:true}));
-
-const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'your_database_name'
+const con = mysql2.createConnection({
+  host: process.env.host,
+  user: process.env.user,
+  password: process.env.password,
+  database: process.env.database,
+  port: 3306 
 });
 
-app.post('/save', (req, res) => {
-  const { username, password, email } = req.body;
 
-  // ← put your validation here (same as Python version)
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static('.')); // serves your HTML
 
-  const sql = "INSERT INTO users (username,password,email) VALUES (?, ?, ?)";
-  db.execute(sql, [username, password, email], (err) => {
-    if (err) return res.send("Error: duplicate or bad data");
-    res.send("<h3 style='color:green'>Saved to MySQL!</h3><br><a href='/'>Back</a>");
+app.post('/submit', (req, res) => {
+  const { username, password } = req.body;
+
+  const sql = "INSERT INTO info (Username, Password) VALUES (?, ?)";
+  con.query(sql, [username, password], (err, result) => {
+    if (err) throw err;
+    console.log("Inserted ID:", result.insertId);
   });
+
+  res.send("Received");
 });
 
-app.listen(3000, () => console.log("Open http://localhost:3000"));
+
+app.listen(port, () => console.log("Server running"));
