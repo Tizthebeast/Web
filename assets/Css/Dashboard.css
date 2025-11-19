@@ -19,6 +19,7 @@ div.sidebar{
 }
 
 div.mainbar{
+	
 	background-color:#e8e8e8;
 	width:73dvw;
 	height:120dvh;
@@ -40,4 +41,5 @@ p.jumper{
 a.sideHyperText{
 	text-decoration:none;
 	padding:1dvh 2dvw;
+	gap:2dvh 1dvw;
 }
