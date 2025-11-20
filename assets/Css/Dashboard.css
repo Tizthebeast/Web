@@ -40,6 +40,5 @@ p.jumper{
 
 a.sideHyperText{
 	text-decoration:none;
-	padding:1dvh 2dvw;
-	gap:2dvh 1dvw;
+	padding:1dvh 1dvw;
 }

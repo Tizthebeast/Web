@@ -7,6 +7,7 @@ div.topbar{
 	width:98dvw;
 	height:6dvh;
 	border-radius:4dvh;
+	display:flex;
 }
 
 div.mainbar{
@@ -31,4 +32,7 @@ p.jumper{
 a.sideHyperText{
 	text-decoration:none;
 	padding:1dvh 2dvw;
+	background-color:#F28100;
+	border-radius:4dvh;
+	font-size:1.5rem;
 }
