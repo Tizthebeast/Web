@@ -12,13 +12,13 @@ div.topbar{
 
 div.mainbar{
 	background-color:#e8e8e8;
-	width:73dvw;
+	width:80dvw;
 	height:120dvh;
 	border-radius:4dvh;
 	border-radius:4dvh;
 	float:right;
 	margin-top:1dvh;
-	margin-right:3dvw;
+	margin-right:5dvw;
 }
 
 div.used{
