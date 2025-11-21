@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('.')); // serves your HTML
 
-app.post('/submit', (req, res) => {
+app.post('/SignUp', (req, res) => {
   const { username, password } = req.body;
 
   const sql = "INSERT INTO info (Username, Password) VALUES (?, ?)";
