@@ -1,33 +1,82 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const mysql2 = require("mysql2");
+const bcrypt = require('bcrypt'); // <-- Add this
 const port = 3000;
 
+// Database connection
 const con = mysql2.createConnection({
   host: process.env.host,
   user: process.env.user,
   password: process.env.password,
   database: process.env.database,
-  port: 3306 
+  port: 3306
 });
 
+con.connect(err => {
+  if (err) throw err;
+  console.log("Connected to MySQL");
+});
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static('.')); // serves your HTML
+app.use(express.static('public')); // serves HTML, CSS, etc.
 
-app.post('/SignUp', (req, res) => {
-  const { username, password } = req.body;
 
-  const sql = "INSERT INTO info (Username, Password) VALUES (?, ?)";
-  con.query(sql, [username, password], (err, result) => {
-    if (err) throw err;
-    console.log("Inserted ID:", result.insertId);
-  });
+// Sign Up Route - SECURE VERSION
+app.post('/SignUp', async (req, res) => {
+  let { username, password } = req.body;
 
-  res.send("Received");
+  // Basic input validation
+  if (!username || !password) {
+    return res.status(400).send("Username and password are required");
+  }
+
+  if (password.length < 6) {
+    return res.status(400).send("Password must be at least 6 characters");
+  }
+
+  try {
+    // Check if username already exists
+    const checkSql = "SELECT * FROM info WHERE Username = ?";
+    con.query(checkSql, [username], async (err, results) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send("Server error");
+      }
+
+      if (results.length > 0) {
+        return res.status(409).send("Username already taken");
+      }
+
+      // Hash the password
+      const saltRounds = 10;
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+      // Insert user
+      const insertSql = "INSERT INTO info (Username, Password) VALUES (?, ?)";
+      con.query(insertSql, [username, hashedPassword], (err, result) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).send("Failed to create account");
+        }
+
+        console.log("User registered:", username, "ID:", result.insertId);
+        res.send(`
+          <h2>Account created successfully!</h2>
+          <p>Welcome, ${username}!</p>
+          <a href="index.html">Go to Dashboard</a>
+        `);
+      });
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
 });
 
-
-app.listen(port, () => console.log("Server running"));
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
+});
