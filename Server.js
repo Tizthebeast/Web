@@ -2,16 +2,16 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const mysql2 = require("mysql2");
-const bcrypt = require('bcrypt'); // <-- Add this
-const port = 3000;
+const bcrypt = require('bcrypt');
+const port = process.env.PORT || 3000;
+const BCRYPT_ROUNDS = Number(process.env.BCRYPT_ROUNDS) || 12;
 
-// Database connection
 const con = mysql2.createConnection({
-  host: process.env.host,
-  user: process.env.user,
-  password: process.env.password,
-  database: process.env.database,
-  port: 3306
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_DATABASE,
+  port: Number(process.env.DB_PORT) || 3306
 });
 
 con.connect(err => {
