@@ -1,1 +1,1 @@
-This project has been written by html, css, js, nodejs, express,...(minor libraries and frameworks)
+This project has been written by html, css, js, nodejs, express,...(minor libraries and frameworks).
